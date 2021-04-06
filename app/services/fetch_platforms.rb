@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
-module FetchPlatforms
-	def initialize
-		fetcher_a = FetchPlatforms::PlatformAFetcher
-	end
+class FetchPlatforms < ApplicationController
+  def initialize
+    @fetcher_a = PlatformAFetcher.new
+  end
+
+  def call
+    @fetcher_a.call
+  end
 end

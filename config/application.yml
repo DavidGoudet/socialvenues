@@ -1,0 +1,4 @@
+api_key: '0e45bd62dfe7ad39aad2438ccd0d8e69'
+base_url_platform_a: 'https://rails-code-challenge.herokuapp.com/platform_a/venue?api_key='
+base_url_platform_b: 'https://rails-code-challenge.herokuapp.com/platform_b/venue?api_key='
+base_url_platform_c: 'https://rails-code-challenge.herokuapp.com/platform_c/venue?api_key='
