@@ -1,0 +1,2 @@
+module VenuePlatformsHelper
+end
