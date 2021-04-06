@@ -2,14 +2,12 @@
 
 class Fetchers::FetchPlatforms < ApplicationController
   def initialize
-    @fetcher_a = FetchWorker.new
-    #@fetcher_a = PlatformBFetcher.new
-    #@fetcher_a = PlatformCFetcher.new
+    @fetch_worker = FetchWorker.new
   end
 
   def call
-    @fetcher_a.perform('Fetchers::PlatformAFetcher')
-    #@fetcher_b.perform('PlatformAFetcher')
-    #@fetcher_c.perform('PlatformAFetcher')
+    VenuePlatform.find_each do |venue_platform|
+      @fetch_worker.perform("Fetchers::#{venue_platform.platform_name}Fetcher")
+    end
   end
 end
