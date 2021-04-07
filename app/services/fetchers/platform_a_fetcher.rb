@@ -12,7 +12,7 @@ class Fetchers::PlatformAFetcher < ApplicationController
     if validate_information platform_hash
       save_information platform_hash 
     else
-      raise "Error saving"
+      return :error_saving
     end
   end
 
@@ -31,7 +31,8 @@ class Fetchers::PlatformAFetcher < ApplicationController
   def validate_information(platform_hash)
     cat_id = platform_hash['category_id']
     cat_id_inside_bounds = 1000 < cat_id && cat_id < 1200
-    hours_right_format = platform_hash['hours'] =~ /((\d{2}:\d{2})-(\d{2}:\d{2})\|){6}(\d{2}:\d{2})/
+    matcher = MatchHourFormat.new(platform_hash['hours']).call
+    hours_right_format = (matcher == :matches_platform_a)
     cat_id_inside_bounds && hours_right_format
   end
 end

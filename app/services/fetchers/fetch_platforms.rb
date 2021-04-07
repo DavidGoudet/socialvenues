@@ -7,7 +7,8 @@ class Fetchers::FetchPlatforms < ApplicationController
 
   def call
     VenuePlatform.find_each do |venue_platform|
-      @fetch_worker.perform("Fetchers::#{venue_platform.platform_name}Fetcher")
+      fetcher = @fetch_worker.perform("Fetchers::#{venue_platform.platform_name}Fetcher")
+      return :error_saving if fetcher == :error_saving
     end
   end
 end
