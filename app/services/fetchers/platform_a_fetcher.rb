@@ -9,7 +9,11 @@ class Fetchers::PlatformAFetcher < ApplicationController
   def call
     response = RestClient.get(@url)
     platform_hash = JSON.parse(response)
-    save_information platform_hash
+    if validate_information platform_hash
+      save_information platform_hash 
+    else
+      raise "Error saving"
+    end
   end
 
   def save_information(platform_hash)
@@ -22,5 +26,12 @@ class Fetchers::PlatformAFetcher < ApplicationController
       closed:       platform_hash['closed'],
       hours:        platform_hash['hours']
     )
+  end
+
+  def validate_information(platform_hash)
+    cat_id = platform_hash['category_id']
+    cat_id_inside_bounds = 1000 < cat_id && cat_id < 1200
+    hours_right_format = platform_hash['hours'] =~ /((\d{2}:\d{2})-(\d{2}:\d{2})\|){6}(\d{2}:\d{2})/
+    cat_id_inside_bounds && hours_right_format
   end
 end

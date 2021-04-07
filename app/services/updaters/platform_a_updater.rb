@@ -7,9 +7,6 @@ class Updaters::PlatformAUpdater < ApplicationController
   end
 
   def call
-    response=RestClient.patch(@url, @params).execute do |response_api, request, result|
-      pp response_api
-    end
-    
+    response=RestClient.patch(@url, @params)
   end
 end

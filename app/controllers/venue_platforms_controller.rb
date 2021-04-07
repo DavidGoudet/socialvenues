@@ -17,10 +17,6 @@ class VenuePlatformsController < ApplicationController
     "Updaters::#{@venue_platform.platform_name}Updater".constantize.new(params).call
   end
 
-  def bulk_update
-    Updaters::BulkUpdate.new(params).call
-  end
-
   private
 
   def fetch_all
