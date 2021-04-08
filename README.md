@@ -81,7 +81,7 @@ This is a simple service to check if the platforms are responding with valid JSO
 ## Workers
 The app is using Sidekiq workers to process the fetching and updating asynchronically. This could be useful in the future to recover the app if one of the many platforms's apis are not responding.
 
-#Testing
+## Testing
 The app is using the gem **Rspec** to test the API and **WebMock** to create stubs to simulate the API calls to the platforms. Both set of tests are testing the API against good and bad requests in both controllers.
 To run them you just need to call:
 ```
