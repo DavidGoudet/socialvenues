@@ -33,20 +33,20 @@ bundle exec sidekiq
 
 You can use Postman to test the Endpoints.
 ## Endpoints
-*GET /*
-*GET /venue_platforms*
+*GET /*  
+*GET /venue_platforms*  
 The root of the app will render a JSON response with the venue's social media platforms that are stored in the system.
 
-*GET /venue_platforms/id*
+*GET /venue_platforms/id*  
 This endpoint will render a specific venue social media platform.
 
-*PATCH /venue_platforms/id*
+*PATCH /venue_platforms/id*  
 This endpoint will update the venue platform both in local and in the external social media API. The parameters will be specified bellow.
 
-*GET /bulk_platform*
+*GET /bulk_platform*  
 This endpoint will show a consolidated venue, product of the merge of all of the available platforms.
 
-*PATCH /bulk_platform*
+*PATCH /bulk_platform*  
 This endpoint will allow to update all the information in all of the platforms at the same time.
 
 ## Parameters
@@ -68,14 +68,14 @@ The **VenuePlatform** is a simple model that allows the storing of the informati
 
 ## Services
 The services were created to extract complex methods and to allow the Controllers to have reusable code.
-* Fetchers
+* Fetchers  
 The Fetchers are mainly controlled by **Fetchers::FetchPlatforms**, a service that iterates on the VenuePlatforms and calls the appropiate fetcher manager for every social media platform. To call the specific fetcher it calls a Sidekiq Worker called **FetchWorker** and it constantizes the names of the platforms to run the specific manager: **PlatformXFetcher**.
 The latter service is customized to manage and connect with every platform, validating its information and saving it.
-* Updaters
+* Updaters 
 The updaters are doing a similar job, but this time transforming the information before sending it to the platforms APIs. These make possible to use custom or standard parameters.
-* MatchHourFormat
+* MatchHourFormat  
 This service is pattern matching the hours format to validate the input. It also converts to other formats to serve the BulkUpdater. The app is capable of converting the hours formats to save the right one on every platform.
-* ResponseIsValidJSON
+* ResponseIsValidJSON  
 This is a simple service to check if the platforms are responding with valid JSON.
 
 ## Workers
