@@ -4,11 +4,12 @@ class BulkPlatformController < ApplicationController
 
   def index
     @bulk_platform = Fetchers::FetchBulkPlatform.new.call
-    render json: @bulk_platform.to_json(except: [:platform_name])
+    render json: @bulk_platform.to_json(except: [:platform_name, :updated_at, :created_at])
   end
 
   def update
     Updaters::BulkUpdate.new(params).call
+    render json: "Venues Updated", status: 200
   end
 
   private

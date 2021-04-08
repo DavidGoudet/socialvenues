@@ -30,6 +30,12 @@ gem 'figaro'
 gem 'rest-client'
 gem 'pg'
 gem 'sidekiq'
+group :development, :test do
+  gem 'rspec-rails', '~> 5.0.0'
+  gem 'factory_girl_rails', '~> 3.2.0'
+  gem 'rexml'
+  gem 'webmock'
+end
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false

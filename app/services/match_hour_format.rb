@@ -30,4 +30,14 @@ class MatchHourFormat < ApplicationController
   def convert_c_to_a
     @hours_string.gsub(',','|')
   end
+
+  def convert_c_to_b
+    converted_to_a = MatchHourFormat.new(@hours_string).convert_c_to_a
+    MatchHourFormat.new(converted_to_a).convert_a_to_b
+  end
+
+  def convert_b_to_c
+    converted_to_a = MatchHourFormat.new(@hours_string).convert_b_to_a
+    MatchHourFormat.new(converted_to_a).convert_a_to_c
+  end
 end

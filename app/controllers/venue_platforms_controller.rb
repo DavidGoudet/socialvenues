@@ -10,13 +10,21 @@ class VenuePlatformsController < ApplicationController
   end
 
   def show
-    render json: VenuePlatform.find(params[:id])
+    if VenuePlatform.exists?(params[:id])
+      render json: VenuePlatform.find(params[:id])
+    else
+      render json: "The VenuePlatform with id #{params[:id]} was not found", status: 404
+    end
   end
 
   def update
-    @venue_platform = VenuePlatform.find(params[:id])
-    response = "Updaters::#{@venue_platform.platform_name}Updater".constantize.new(permitted_params(params)).call
-    render json: response[:body], status: response[:code]
+    if VenuePlatform.exists?(params[:id])
+      @venue_platform = VenuePlatform.find(params[:id])
+      response = "Updaters::#{@venue_platform.platform_name}Updater".constantize.new(permitted_params(params)).call
+      render json: response[:body], status: response[:code]
+    else
+      render json: "The VenuePlatform with id #{params[:id]} was not found", status: 404
+    end
   end
 
   private

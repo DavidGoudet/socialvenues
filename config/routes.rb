@@ -5,5 +5,6 @@ Rails.application.routes.draw do
 
   resources :venue_platforms, only: [:index, :show, :update]
 
-  resources :bulk_platform, only: [:index, :update]
+  resources :bulk_platform, only: [:index]
+  patch "/bulk_platform", to: "bulk_platform#update"
 end

@@ -5,7 +5,7 @@ class BulkUpdateWorker
     @params = params
   end
 
-  def perform(platform_fetcherupdater_class)
+  def perform(platform_updater_class)
     platform_updater_class.constantize.new(@params).call
   end
 end
