@@ -71,7 +71,7 @@ The services were created to extract complex methods and to allow the Controller
 * Fetchers  
 The Fetchers are mainly controlled by **Fetchers::FetchPlatforms**, a service that iterates on the VenuePlatforms and calls the appropiate fetcher manager for every social media platform. To call the specific fetcher it calls a Sidekiq Worker called **FetchWorker** and it constantizes the names of the platforms to run the specific manager: **PlatformXFetcher**.
 The latter service is customized to manage and connect with every platform, validating its information and saving it.
-* Updaters 
+* Updaters  
 The updaters are doing a similar job, but this time transforming the information before sending it to the platforms APIs. These make possible to use custom or standard parameters.
 * MatchHourFormat  
 This service is pattern matching the hours format to validate the input. It also converts to other formats to serve the BulkUpdater. The app is capable of converting the hours formats to save the right one on every platform.
